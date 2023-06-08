@@ -56,6 +56,21 @@
     <main class="container mx-auto">
         <h1 class="text-center mb-3">Lista di Hotel</h1>
             
+            <form action="index.php" method="get">
+                <span>Filtra gli hotel con parcheggio:</span>
+                <input type="radio" name="filter" id="si" value="si">
+                <label for="si">Si</label>
+
+                <input type="radio" name="filter" id="no" value="no">
+                <label for="no">No</label>
+
+                <button type="submit">Cerca</button>
+            </form>
+
+            <?php 
+                $filter = $_GET["filter"];
+            ?>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -68,7 +83,11 @@
                 </thead>
 
                 <tbody>
-                    <?php foreach ($hotels as $hotel) { ?>
+                    <?php foreach ($hotels as $hotel) { 
+                        if ($filter == "si" && $hotel["parking"] != true) {
+                           $hotel = null;
+                        }  
+                    ?>
                         <tr>
 
                         <?php foreach ($hotel as $hotelFeature) { ?>
