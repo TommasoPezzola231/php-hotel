@@ -88,12 +88,8 @@
 
                 <tbody>
                     <?php foreach ($hotels as $hotel) { 
-                        if ($filter == "si" && $hotel["parking"] != true) {
+                        if ($filter == "si" && $hotel["parking"] != true || $hotel["vote"] < $voto) {
                            $hotel = null;
-                        }
-                        
-                        if ($hotel["vote"] < $voto) {
-                            $hotel = null;
                         }
                     ?>
                         <tr>
