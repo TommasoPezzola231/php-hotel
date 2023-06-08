@@ -64,11 +64,15 @@
                 <input type="radio" name="filter" id="no" value="no">
                 <label for="no">No</label>
 
-                <button type="submit">Cerca</button>
+                <span class="ms-5">Inserisci la valutazione minima dell'Hotel</span>
+                <input class="col-1" type="number" name="voto" id="">
+
+                <button class="ms-5" type="submit">Cerca</button>
             </form>
 
             <?php 
                 $filter = $_GET["filter"];
+                $voto = $_GET["voto"];
             ?>
 
             <table class="table">
@@ -86,7 +90,11 @@
                     <?php foreach ($hotels as $hotel) { 
                         if ($filter == "si" && $hotel["parking"] != true) {
                            $hotel = null;
-                        }  
+                        }
+                        
+                        if ($hotel["vote"] < $voto) {
+                            $hotel = null;
+                        }
                     ?>
                         <tr>
 
